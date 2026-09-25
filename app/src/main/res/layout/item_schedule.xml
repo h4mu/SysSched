@@ -65,7 +65,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
-            android:text="⚠ Direct control unavailable on this Android version"
+            android:text="@string/capability_direct_unavailable"
             android:textColor="#D32F2F"
             android:textSize="12sp"
             android:visibility="gone" />

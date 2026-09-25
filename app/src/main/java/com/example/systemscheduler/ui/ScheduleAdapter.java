@@ -1,5 +1,6 @@
 package com.example.systemscheduler.ui;
 
+import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,6 +11,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.systemscheduler.R;
 import com.example.systemscheduler.model.CapabilityLevel;
+import com.example.systemscheduler.model.ExecutionResultStatus;
 import com.example.systemscheduler.model.Schedule;
 import com.example.systemscheduler.operation.OperationDispatcher;
 import com.google.android.material.switchmaterial.SwitchMaterial;
@@ -78,13 +80,15 @@ public class ScheduleAdapter extends RecyclerView.Adapter<ScheduleAdapter.ViewHo
         }
 
         void bind(final Schedule schedule, final OnScheduleClickListener listener) {
+            Context context = itemView.getContext();
+
             textTime.setText(String.format(Locale.getDefault(), "%02d:%02d", schedule.getHour(), schedule.getMinute()));
 
-            String opName = schedule.getOperation() != null ? schedule.getOperation().getDisplayName() : "";
-            String actName = schedule.getAction() != null ? schedule.getAction().getDisplayName() : "";
+            String opName = schedule.getOperation() != null ? schedule.getOperation().getDisplayName(context) : "";
+            String actName = schedule.getAction() != null ? schedule.getAction().getDisplayName(context) : "";
             textOperation.setText(String.format("%s — %s", opName, actName));
 
-            textRepeat.setText(schedule.getRepeatType() != null ? schedule.getRepeatType().getDisplayName() : "");
+            textRepeat.setText(schedule.getRepeatType() != null ? schedule.getRepeatType().getDisplayName(context) : "");
 
             switchEnabled.setOnCheckedChangeListener(null);
             switchEnabled.setChecked(schedule.isEnabled());
@@ -94,23 +98,29 @@ public class ScheduleAdapter extends RecyclerView.Adapter<ScheduleAdapter.ViewHo
                 }
             });
 
-            CapabilityLevel capability = OperationDispatcher.getCapability(itemView.getContext(), schedule.getOperation());
+            CapabilityLevel capability = OperationDispatcher.getCapability(context, schedule.getOperation());
             if (capability == CapabilityLevel.USER_ACTION_REQUIRED) {
                 textCapabilityWarning.setVisibility(View.VISIBLE);
-                textCapabilityWarning.setText("⚠ Requires user action / opens settings");
+                textCapabilityWarning.setText(R.string.capability_user_action_required);
             } else if (capability == CapabilityLevel.PRIVILEGED) {
                 textCapabilityWarning.setVisibility(View.VISIBLE);
-                textCapabilityWarning.setText("🔒 Requires system or root privileges");
+                textCapabilityWarning.setText(R.string.capability_privileged);
             } else if (capability == CapabilityLevel.UNSUPPORTED) {
                 textCapabilityWarning.setVisibility(View.VISIBLE);
-                textCapabilityWarning.setText("✕ Unsupported on this hardware");
+                textCapabilityWarning.setText(R.string.capability_unsupported);
             } else {
                 textCapabilityWarning.setVisibility(View.GONE);
             }
 
             if (schedule.getLastExecution() > 0 && schedule.getLastResultStatus() != null) {
                 textLastExecution.setVisibility(View.VISIBLE);
-                textLastExecution.setText("Last status: " + schedule.getLastResultStatus());
+                String statusStr = schedule.getLastResultStatus();
+                try {
+                    ExecutionResultStatus statusEnum = ExecutionResultStatus.valueOf(statusStr);
+                    statusStr = statusEnum.getMessage(context);
+                } catch (Exception ignored) {
+                }
+                textLastExecution.setText(context.getString(R.string.last_status_format, statusStr));
             } else {
                 textLastExecution.setVisibility(View.GONE);
             }

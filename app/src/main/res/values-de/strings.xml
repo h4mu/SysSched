@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">System-Zeitplaner</string>
+
+    <!-- UI Main Activity -->
+    <string name="empty_state_text">Noch keine Zeitpläne erstellt.\nTippen Sie auf +, um einen neuen Zeitplan hinzuzufügen.</string>
+    <string name="fab_add_schedule_desc">Zeitplan hinzufügen</string>
+    <string name="dialog_delete_title">Zeitplan löschen</string>
+    <string name="dialog_delete_message">Möchten Sie diesen Zeitplan wirklich löschen?</string>
+    <string name="dialog_delete_confirm">Löschen</string>
+    <string name="dialog_cancel">Abbrechen</string>
+    <string name="toast_schedule_deleted">Zeitplan gelöscht</string>
+    <string name="dialog_title_new">Neuer Zeitplan</string>
+    <string name="dialog_title_edit">Zeitplan bearbeiten</string>
+    <string name="dialog_save">Speichern</string>
+    <string name="toast_schedule_saved">Zeitplan gespeichert</string>
+
+    <!-- Dialog Editor Labels -->
+    <string name="label_operation">Vorgang</string>
+    <string name="label_action">Aktion</string>
+    <string name="label_time">Uhrzeit</string>
+    <string name="label_repeat">Wiederholung</string>
+
+    <!-- Adapter and Capability Messages -->
+    <string name="capability_direct_unavailable">⚠ Direkte Steuerung auf dieser Android-Version nicht verfügbar</string>
+    <string name="capability_user_action_required">⚠ Erfordert Benutzeraktion / öffnet Einstellungen</string>
+    <string name="capability_privileged">🔒 Erfordert System- oder Root-Rechte</string>
+    <string name="capability_unsupported">✕ Auf dieser Hardware nicht unterstützt</string>
+    <string name="last_status_format">Letzter Status: %s</string>
+
+    <!-- Operation Types -->
+    <string name="op_wifi">WLAN</string>
+    <string name="op_bluetooth">Bluetooth</string>
+    <string name="op_mobile_data">Mobile Daten</string>
+    <string name="op_sync">Automatische Synchronisierung</string>
+    <string name="op_location">Standort / GPS</string>
+    <string name="op_nfc">NFC</string>
+    <string name="op_power_saving">Energiesparmodus</string>
+    <string name="op_reboot">Gerät neu starten</string>
+    <string name="op_shutdown">Gerät ausschalten</string>
+
+    <!-- Action Types -->
+    <string name="action_on">EIN</string>
+    <string name="action_off">AUS</string>
+
+    <!-- Repeat Types -->
+    <string name="repeat_once">Einmalig</string>
+    <string name="repeat_daily">Jeden Tag</string>
+    <string name="repeat_weekly">Wöchentlich</string>
+
+    <!-- Execution Result Statuses -->
+    <string name="status_success">Vorgang erfolgreich</string>
+    <string name="status_user_action_required">Benutzeraktion erforderlich (Einstellungen geöffnet)</string>
+    <string name="status_permission_denied">Berechtigung verweigert</string>
+    <string name="status_not_supported">Vorgang nicht unterstützt</string>
+    <string name="status_failed">Vorgang fehlgeschlagen</string>
+</resources>
