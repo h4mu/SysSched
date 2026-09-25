@@ -1,6 +1,5 @@
 package com.example.systemscheduler;
 
-import android.content.DialogInterface;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -18,11 +17,9 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.systemscheduler.data.ScheduleStore;
 import com.example.systemscheduler.model.ActionType;
-import com.example.systemscheduler.model.CapabilityLevel;
 import com.example.systemscheduler.model.OperationType;
 import com.example.systemscheduler.model.RepeatType;
 import com.example.systemscheduler.model.Schedule;
-import com.example.systemscheduler.operation.OperationDispatcher;
 import com.example.systemscheduler.scheduler.AlarmScheduler;
 import com.example.systemscheduler.ui.ScheduleAdapter;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -88,15 +85,15 @@ public class MainActivity extends AppCompatActivity implements ScheduleAdapter.O
     @Override
     public void onScheduleLongClick(Schedule schedule) {
         new AlertDialog.Builder(this)
-                .setTitle("Delete Schedule")
-                .setMessage("Are you sure you want to delete this schedule?")
-                .setPositiveButton("Delete", (dialog, which) -> {
+                .setTitle(R.string.dialog_delete_title)
+                .setMessage(R.string.dialog_delete_message)
+                .setPositiveButton(R.string.dialog_delete_confirm, (dialog, which) -> {
                     alarmScheduler.cancel(schedule);
                     scheduleStore.deleteSchedule(schedule.getId());
                     loadSchedules();
-                    Toast.makeText(MainActivity.this, "Schedule deleted", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(MainActivity.this, R.string.toast_schedule_deleted, Toast.LENGTH_SHORT).show();
                 })
-                .setNegativeButton("Cancel", null)
+                .setNegativeButton(R.string.dialog_cancel, null)
                 .show();
     }
 
@@ -110,20 +107,19 @@ public class MainActivity extends AppCompatActivity implements ScheduleAdapter.O
         Spinner spinnerAct = dialogView.findViewById(R.id.spinner_action);
         TimePicker timePicker = dialogView.findViewById(R.id.time_picker);
         Spinner spinnerRepeat = dialogView.findViewById(R.id.spinner_repeat);
-        TextView textCapabilityInfo = dialogView.findViewById(R.id.text_capability_info);
 
         timePicker.setIs24HourView(true);
 
         if (existingSchedule != null) {
-            title.setText("Edit Schedule");
+            title.setText(R.string.dialog_title_edit);
         } else {
-            title.setText("New Schedule");
+            title.setText(R.string.dialog_title_new);
         }
 
         // Setup Spinners
         List<String> opDisplayNames = new ArrayList<>();
         for (OperationType op : OperationType.values()) {
-            opDisplayNames.add(op.getDisplayName());
+            opDisplayNames.add(op.getDisplayName(this));
         }
         ArrayAdapter<String> opAdapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, opDisplayNames);
         opAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -131,7 +127,7 @@ public class MainActivity extends AppCompatActivity implements ScheduleAdapter.O
 
         List<String> actDisplayNames = new ArrayList<>();
         for (ActionType act : ActionType.values()) {
-            actDisplayNames.add(act.getDisplayName());
+            actDisplayNames.add(act.getDisplayName(this));
         }
         ArrayAdapter<String> actAdapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, actDisplayNames);
         actAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -139,7 +135,7 @@ public class MainActivity extends AppCompatActivity implements ScheduleAdapter.O
 
         List<String> repeatDisplayNames = new ArrayList<>();
         for (RepeatType rep : RepeatType.values()) {
-            repeatDisplayNames.add(rep.getDisplayName());
+            repeatDisplayNames.add(rep.getDisplayName(this));
         }
         ArrayAdapter<String> repeatAdapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, repeatDisplayNames);
         repeatAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -160,7 +156,7 @@ public class MainActivity extends AppCompatActivity implements ScheduleAdapter.O
             }
         }
 
-        builder.setPositiveButton("Save", (dialog, which) -> {
+        builder.setPositiveButton(R.string.dialog_save, (dialog, which) -> {
             OperationType op = OperationType.values()[spinnerOp.getSelectedItemPosition()];
             ActionType act = ActionType.values()[spinnerAct.getSelectedItemPosition()];
             RepeatType repeat = RepeatType.values()[spinnerRepeat.getSelectedItemPosition()];
@@ -180,10 +176,10 @@ public class MainActivity extends AppCompatActivity implements ScheduleAdapter.O
             alarmScheduler.schedule(schedule);
 
             loadSchedules();
-            Toast.makeText(MainActivity.this, "Schedule saved", Toast.LENGTH_SHORT).show();
+            Toast.makeText(MainActivity.this, R.string.toast_schedule_saved, Toast.LENGTH_SHORT).show();
         });
 
-        builder.setNegativeButton("Cancel", null);
+        builder.setNegativeButton(R.string.dialog_cancel, null);
 
         AlertDialog dialog = builder.create();
         dialog.show();

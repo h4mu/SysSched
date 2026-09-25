@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Rendszerütemező</string>
+
+    <!-- UI Main Activity -->
+    <string name="empty_state_text">Még nincsenek létrehozva ütemezések.\nÉrintse meg a + gombot új ütemezés hozzáadásához.</string>
+    <string name="fab_add_schedule_desc">Ütemezés hozzáadása</string>
+    <string name="dialog_delete_title">Ütemezés törlése</string>
+    <string name="dialog_delete_message">Biztosan törölni szeretné ezt az ütemezést?</string>
+    <string name="dialog_delete_confirm">Törlés</string>
+    <string name="dialog_cancel">Mégse</string>
+    <string name="toast_schedule_deleted">Ütemezés törölve</string>
+    <string name="dialog_title_new">Új ütemezés</string>
+    <string name="dialog_title_edit">Ütemezés szerkesztése</string>
+    <string name="dialog_save">Mentés</string>
+    <string name="toast_schedule_saved">Ütemezés elmentve</string>
+
+    <!-- Dialog Editor Labels -->
+    <string name="label_operation">Művelet</string>
+    <string name="label_action">Művelet típusa</string>
+    <string name="label_time">Időpont</string>
+    <string name="label_repeat">Ismétlés</string>
+
+    <!-- Adapter and Capability Messages -->
+    <string name="capability_direct_unavailable">⚠ Közvetlen vezérlés nem érhető el ezen az Android verzión</string>
+    <string name="capability_user_action_required">⚠ Felhasználói beavatkozás szükséges / megnyitja a beállításokat</string>
+    <string name="capability_privileged">🔒 Rendszer- vagy root jogosultság szükséges</string>
+    <string name="capability_unsupported">✕ Nem támogatott ezen a hardveren</string>
+    <string name="last_status_format">Utolsó állapot: %s</string>
+
+    <!-- Operation Types -->
+    <string name="op_wifi">Wi-Fi</string>
+    <string name="op_bluetooth">Bluetooth</string>
+    <string name="op_mobile_data">Mobiladatok</string>
+    <string name="op_sync">Automatikus szinkronizálás</string>
+    <string name="op_location">Helymeghatározás / GPS</string>
+    <string name="op_nfc">NFC</string>
+    <string name="op_power_saving">Akkumulátorkímélő</string>
+    <string name="op_reboot">Eszköz újraindítása</string>
+    <string name="op_shutdown">Eszköz kikapcsolása</string>
+
+    <!-- Action Types -->
+    <string name="action_on">BE</string>
+    <string name="action_off">KI</string>
+
+    <!-- Repeat Types -->
+    <string name="repeat_once">Egyszeri</string>
+    <string name="repeat_daily">Minden nap</string>
+    <string name="repeat_weekly">Hetente</string>
+
+    <!-- Execution Result Statuses -->
+    <string name="status_success">A művelet sikerült</string>
+    <string name="status_user_action_required">Felhasználói beavatkozás szükséges (Beállítások megnyitva)</string>
+    <string name="status_permission_denied">Engedély megtagadva</string>
+    <string name="status_not_supported">A művelet nem támogatott</string>
+    <string name="status_failed">A művelet sikertelen</string>
+</resources>

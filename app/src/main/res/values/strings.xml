@@ -1,3 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">System Scheduler</string>
+
+    <!-- UI Main Activity -->
+    <string name="empty_state_text">No schedules created yet.\nTap + to add a new schedule.</string>
+    <string name="fab_add_schedule_desc">Add schedule</string>
+    <string name="dialog_delete_title">Delete Schedule</string>
+    <string name="dialog_delete_message">Are you sure you want to delete this schedule?</string>
+    <string name="dialog_delete_confirm">Delete</string>
+    <string name="dialog_cancel">Cancel</string>
+    <string name="toast_schedule_deleted">Schedule deleted</string>
+    <string name="dialog_title_new">New Schedule</string>
+    <string name="dialog_title_edit">Edit Schedule</string>
+    <string name="dialog_save">Save</string>
+    <string name="toast_schedule_saved">Schedule saved</string>
+
+    <!-- Dialog Editor Labels -->
+    <string name="label_operation">Operation</string>
+    <string name="label_action">Action</string>
+    <string name="label_time">Time</string>
+    <string name="label_repeat">Repeat</string>
+
+    <!-- Adapter and Capability Messages -->
+    <string name="capability_direct_unavailable">⚠ Direct control unavailable on this Android version</string>
+    <string name="capability_user_action_required">⚠ Requires user action / opens settings</string>
+    <string name="capability_privileged">🔒 Requires system or root privileges</string>
+    <string name="capability_unsupported">✕ Unsupported on this hardware</string>
+    <string name="last_status_format">Last status: %s</string>
+
+    <!-- Operation Types -->
+    <string name="op_wifi">Wi-Fi</string>
+    <string name="op_bluetooth">Bluetooth</string>
+    <string name="op_mobile_data">Mobile Data</string>
+    <string name="op_sync">Automatic Sync</string>
+    <string name="op_location">Location / GPS</string>
+    <string name="op_nfc">NFC</string>
+    <string name="op_power_saving">Power Saving</string>
+    <string name="op_reboot">Device Reboot</string>
+    <string name="op_shutdown">Device Shutdown</string>
+
+    <!-- Action Types -->
+    <string name="action_on">ON</string>
+    <string name="action_off">OFF</string>
+
+    <!-- Repeat Types -->
+    <string name="repeat_once">One-time</string>
+    <string name="repeat_daily">Every day</string>
+    <string name="repeat_weekly">Weekly</string>
+
+    <!-- Execution Result Statuses -->
+    <string name="status_success">Operation succeeded</string>
+    <string name="status_user_action_required">User action required (Settings opened)</string>
+    <string name="status_permission_denied">Permission denied</string>
+    <string name="status_not_supported">Operation not supported</string>
+    <string name="status_failed">Operation failed</string>
 </resources>

@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Systémový plánovač</string>
+
+    <!-- UI Main Activity -->
+    <string name="empty_state_text">Zatím nebyly vytvořeny žádné plánovače.\nKlepnutím na + přidejte nový plán.</string>
+    <string name="fab_add_schedule_desc">Přidat plán</string>
+    <string name="dialog_delete_title">Smazat plán</string>
+    <string name="dialog_delete_message">Opravdu chcete tento plán smazat?</string>
+    <string name="dialog_delete_confirm">Smazat</string>
+    <string name="dialog_cancel">Zrušit</string>
+    <string name="toast_schedule_deleted">Plán byl smazán</string>
+    <string name="dialog_title_new">Nový plán</string>
+    <string name="dialog_title_edit">Upravit plán</string>
+    <string name="dialog_save">Uložit</string>
+    <string name="toast_schedule_saved">Plán uložen</string>
+
+    <!-- Dialog Editor Labels -->
+    <string name="label_operation">Operace</string>
+    <string name="label_action">Akce</string>
+    <string name="label_time">Čas</string>
+    <string name="label_repeat">Opakování</string>
+
+    <!-- Adapter and Capability Messages -->
+    <string name="capability_direct_unavailable">⚠ Přímé ovládání není v této verzi systému Android k dispozici</string>
+    <string name="capability_user_action_required">⚠ Vyžaduje akci uživatele / otevře nastavení</string>
+    <string name="capability_privileged">🔒 Vyžaduje systémová nebo root oprávnění</string>
+    <string name="capability_unsupported">✕ Na tomto hardwaru není podporováno</string>
+    <string name="last_status_format">Poslední stav: %s</string>
+
+    <!-- Operation Types -->
+    <string name="op_wifi">Wi-Fi</string>
+    <string name="op_bluetooth">Bluetooth</string>
+    <string name="op_mobile_data">Mobilní data</string>
+    <string name="op_sync">Automatická synchronizace</string>
+    <string name="op_location">Poloha / GPS</string>
+    <string name="op_nfc">NFC</string>
+    <string name="op_power_saving">Spořič baterie</string>
+    <string name="op_reboot">Restartovat zařízení</string>
+    <string name="op_shutdown">Vypnout zařízení</string>
+
+    <!-- Action Types -->
+    <string name="action_on">ZAPNUTO</string>
+    <string name="action_off">VYPNUTO</string>
+
+    <!-- Repeat Types -->
+    <string name="repeat_once">Jednou</string>
+    <string name="repeat_daily">Každý den</string>
+    <string name="repeat_weekly">Týdně</string>
+
+    <!-- Execution Result Statuses -->
+    <string name="status_success">Operace byla úspěšná</string>
+    <string name="status_user_action_required">Vyžaduje akci uživatele (otevřeno Nastavení)</string>
+    <string name="status_permission_denied">Přístup odepřen</string>
+    <string name="status_not_supported">Operace není podporována</string>
+    <string name="status_failed">Operace selhala</string>
+</resources>

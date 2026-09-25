@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Pianificatore di Sistema</string>
+
+    <!-- UI Main Activity -->
+    <string name="empty_state_text">Nessuna pianificazione creata.\nTocca + per aggiungere una nuova pianificazione.</string>
+    <string name="fab_add_schedule_desc">Aggiungi pianificazione</string>
+    <string name="dialog_delete_title">Elimina pianificazione</string>
+    <string name="dialog_delete_message">Sei sicuro di voler eliminare questa pianificazione?</string>
+    <string name="dialog_delete_confirm">Elimina</string>
+    <string name="dialog_cancel">Annulla</string>
+    <string name="toast_schedule_deleted">Pianificazione eliminata</string>
+    <string name="dialog_title_new">Nuova pianificazione</string>
+    <string name="dialog_title_edit">Modifica pianificazione</string>
+    <string name="dialog_save">Salva</string>
+    <string name="toast_schedule_saved">Pianificazione salvata</string>
+
+    <!-- Dialog Editor Labels -->
+    <string name="label_operation">Operazione</string>
+    <string name="label_action">Azione</string>
+    <string name="label_time">Ora</string>
+    <string name="label_repeat">Ripeti</string>
+
+    <!-- Adapter and Capability Messages -->
+    <string name="capability_direct_unavailable">⚠ Controllo diretto non disponibile su questa versione di Android</string>
+    <string name="capability_user_action_required">⚠ Richiede l\'azione dell\'utente / apre le impostazioni</string>
+    <string name="capability_privileged">🔒 Richiede privilegi di sistema o root</string>
+    <string name="capability_unsupported">✕ Non supportato su questo hardware</string>
+    <string name="last_status_format">Ultimo stato: %s</string>
+
+    <!-- Operation Types -->
+    <string name="op_wifi">Wi-Fi</string>
+    <string name="op_bluetooth">Bluetooth</string>
+    <string name="op_mobile_data">Dati mobili</string>
+    <string name="op_sync">Sincronizzazione automatica</string>
+    <string name="op_location">Posizione / GPS</string>
+    <string name="op_nfc">NFC</string>
+    <string name="op_power_saving">Risparmio energetico</string>
+    <string name="op_reboot">Riavvia dispositivo</string>
+    <string name="op_shutdown">Spegni dispositivo</string>
+
+    <!-- Action Types -->
+    <string name="action_on">ATTIVO</string>
+    <string name="action_off">DISATTIVO</string>
+
+    <!-- Repeat Types -->
+    <string name="repeat_once">Una volta</string>
+    <string name="repeat_daily">Ogni giorno</string>
+    <string name="repeat_weekly">Settimanale</string>
+
+    <!-- Execution Result Statuses -->
+    <string name="status_success">Operazione riuscita</string>
+    <string name="status_user_action_required">Azione utente richiesta (Impostazioni aperte)</string>
+    <string name="status_permission_denied">Autorizzazione negata</string>
+    <string name="status_not_supported">Operazione non supportata</string>
+    <string name="status_failed">Operazione non riuscita</string>
+</resources>
