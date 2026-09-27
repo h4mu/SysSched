@@ -4,7 +4,21 @@ A minimalist Android application written in **Java** for scheduling system opera
 
 Designed for **Android 8.0 (API 26) and newer**, with a focus on simplicity, predictable scheduling, zero third-party cloud dependencies, and minimal background overhead.
 
-> **Important:** Android deliberately restricts third-party applications from directly changing several system settings. The application therefore distinguishes between operations it can perform directly, operations requiring special privileges, and operations that can only open the corresponding system settings.
+> **Important:** All scheduled operations are configured for **direct execution** without launching system settings screens. To allow the application to directly change system toggles (such as Wi-Fi, Bluetooth, Location, Mobile Data, NFC, Power Saving, Reboot, or Shutdown), grant `WRITE_SECURE_SETTINGS` via ADB or set the app as Device Owner.
+
+### Setup Instructions for Direct Execution
+
+ run the following commands via ADB:
+
+1. **Grant Secure Settings Permission:**
+   ```bash
+   adb shell pm grant com.example.systemscheduler android.permission.WRITE_SECURE_SETTINGS
+   ```
+
+2. **Set Device Owner (Optional):**
+   ```bash
+   adb shell dpm set-device-owner com.example.systemscheduler/.receiver.AdminReceiver
+   ```
 
 ## Features
 
@@ -92,9 +106,8 @@ PRIVILEGED
 UNSUPPORTED
 ```
 
-* **DIRECT**: Managed directly via standard Android APIs (e.g., Sync, Wi-Fi on older APIs).
-* **USER_ACTION_REQUIRED**: Launches relevant Android system settings screen when direct toggling is restricted on modern Android releases.
-* **PRIVILEGED**: Requires system app privileges or root (e.g., Reboot, Shutdown).
+* **DIRECT**: Managed directly via standard Android APIs, `DevicePolicyManager`, or `Settings.Global`/`Settings.Secure` system settings.
+* **PRIVILEGED**: Requires elevated permissions or Device Owner privileges (e.g., Reboot, Shutdown).
 * **UNSUPPORTED**: Hardware or API not available on device.
 
 ## Scheduling Architecture

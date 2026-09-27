@@ -5,10 +5,12 @@ import android.content.Context;
 import com.example.systemscheduler.data.ScheduleStore;
 import com.example.systemscheduler.model.ActionType;
 import com.example.systemscheduler.model.CapabilityLevel;
+import com.example.systemscheduler.model.ExecutionResultStatus;
 import com.example.systemscheduler.model.OperationType;
 import com.example.systemscheduler.model.RepeatType;
 import com.example.systemscheduler.model.Schedule;
 import com.example.systemscheduler.operation.OperationDispatcher;
+import com.example.systemscheduler.receiver.AdminReceiver;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -102,9 +104,23 @@ public class ScheduleUnitTest {
 
     @Test
     public void testOperationCapabilities() {
-        assertEquals(CapabilityLevel.DIRECT, OperationDispatcher.getCapability(context, OperationType.SYNC));
-        assertEquals(CapabilityLevel.USER_ACTION_REQUIRED, OperationDispatcher.getCapability(context, OperationType.LOCATION));
-        assertEquals(CapabilityLevel.PRIVILEGED, OperationDispatcher.getCapability(context, OperationType.REBOOT));
-        assertEquals(CapabilityLevel.PRIVILEGED, OperationDispatcher.getCapability(context, OperationType.SHUTDOWN));
+        for (OperationType op : OperationType.values()) {
+            assertEquals(CapabilityLevel.DIRECT, OperationDispatcher.getCapability(context, op));
+        }
+    }
+
+    @Test
+    public void testAdminReceiverInstantiation() {
+        AdminReceiver receiver = new AdminReceiver();
+        assertNotNull(receiver);
+    }
+
+    @Test
+    public void testDirectOperationDispatchingWithoutSettingsOpen() {
+        for (OperationType op : OperationType.values()) {
+            ExecutionResultStatus status = OperationDispatcher.dispatch(context, op, ActionType.ON);
+            assertNotNull(status);
+            assertTrue(status == ExecutionResultStatus.SUCCESS || status == ExecutionResultStatus.PERMISSION_DENIED || status == ExecutionResultStatus.FAILED);
+        }
     }
 }

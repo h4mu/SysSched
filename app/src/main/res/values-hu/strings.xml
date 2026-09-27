@@ -2,6 +2,9 @@
 <resources>
     <string name="app_name">Rendszerütemező</string>
 
+    <string name="device_admin_label">System Scheduler Rendszergazda</string>
+    <string name="device_admin_description">Engedélyezi a közvetlen ütemezett műveleteket, mint az újraindítás, kikapcsolás és hálózati kapcsolók.</string>
+
     <!-- UI Main Activity -->
     <string name="empty_state_text">Még nincsenek létrehozva ütemezések.\nÉrintse meg a + gombot új ütemezés hozzáadásához.</string>
     <string name="fab_add_schedule_desc">Ütemezés hozzáadása</string>
@@ -14,6 +17,11 @@
     <string name="dialog_title_edit">Ütemezés szerkesztése</string>
     <string name="dialog_save">Mentés</string>
     <string name="toast_schedule_saved">Ütemezés elmentve</string>
+
+    <string name="action_permissions_info">Engedélyezési útmutató</string>
+    <string name="dialog_permissions_title">Közvetlen végrehajtás beállítása</string>
+    <string name="dialog_permissions_message">A közvetlen átváltás engedélyezéséhez adja meg a WRITE_SECURE_SETTINGS engedélyt vagy állítsa be Device Owner-ként ADB-n keresztül:\n\n1. Engedély megadása:\nadb shell pm grant com.example.systemscheduler android.permission.WRITE_SECURE_SETTINGS\n\n2. Device Owner beállítása (Opcionális):\nadb shell dpm set-device-owner com.example.systemscheduler/.receiver.AdminReceiver</string>
+    <string name="dialog_ok">OK</string>
 
     <!-- Dialog Editor Labels -->
     <string name="label_operation">Művelet</string>

@@ -2,6 +2,9 @@
 <resources>
     <string name="app_name">Systémový plánovač</string>
 
+    <string name="device_admin_label">Správce systému Scheduler</string>
+    <string name="device_admin_description">Umožňuje přímé plánované systémové akce jako restart, vypnutí, polohu a síťové operace.</string>
+
     <!-- UI Main Activity -->
     <string name="empty_state_text">Zatím nebyly vytvořeny žádné plánovače.\nKlepnutím na + přidejte nový plán.</string>
     <string name="fab_add_schedule_desc">Přidat plán</string>
@@ -14,6 +17,11 @@
     <string name="dialog_title_edit">Upravit plán</string>
     <string name="dialog_save">Uložit</string>
     <string name="toast_schedule_saved">Plán uložen</string>
+
+    <string name="action_permissions_info">Pokyny k nastavení oprávnění</string>
+    <string name="dialog_permissions_title">Nastavení přímého provádění</string>
+    <string name="dialog_permissions_message">Pro povolená přímá přepínání bez manuálního zásahu udělejte oprávnění Secure Settings nebo nastavte Device Owner přes ADB:\n\n1. Udělení oprávnění:\nadb shell pm grant com.example.systemscheduler android.permission.WRITE_SECURE_SETTINGS\n\n2. Nastavení Device Owner (volitelné):\nadb shell dpm set-device-owner com.example.systemscheduler/.receiver.AdminReceiver</string>
+    <string name="dialog_ok">OK</string>
 
     <!-- Dialog Editor Labels -->
     <string name="label_operation">Operace</string>

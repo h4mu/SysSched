@@ -2,6 +2,9 @@
 <resources>
     <string name="app_name">System-Zeitplaner</string>
 
+    <string name="device_admin_label">System Scheduler Admin</string>
+    <string name="device_admin_description">Ermöglicht direkte Systemaktionen wie Neustart, Ausschalten, Standort- und Netzwerkumschaltung.</string>
+
     <!-- UI Main Activity -->
     <string name="empty_state_text">Noch keine Zeitpläne erstellt.\nTippen Sie auf +, um einen neuen Zeitplan hinzuzufügen.</string>
     <string name="fab_add_schedule_desc">Zeitplan hinzufügen</string>
@@ -14,6 +17,11 @@
     <string name="dialog_title_edit">Zeitplan bearbeiten</string>
     <string name="dialog_save">Speichern</string>
     <string name="toast_schedule_saved">Zeitplan gespeichert</string>
+
+    <string name="action_permissions_info">Anleitung zur Berechtigung</string>
+    <string name="dialog_permissions_title">Einrichtung der direkten Ausführung</string>
+    <string name="dialog_permissions_message">Um das direkte Umschalten ohne manuelles Eingreifen zu aktivieren, erteilen Sie die Secure Settings Berechtigung oder legen Sie Device Owner über ADB fest:\n\n1. Berechtigung erteilen:\nadb shell pm grant com.example.systemscheduler android.permission.WRITE_SECURE_SETTINGS\n\n2. Als Device Owner festlegen (optional):\nadb shell dpm set-device-owner com.example.systemscheduler/.receiver.AdminReceiver</string>
+    <string name="dialog_ok">OK</string>
 
     <!-- Dialog Editor Labels -->
     <string name="label_operation">Vorgang</string>

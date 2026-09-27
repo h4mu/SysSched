@@ -2,6 +2,9 @@
 <resources>
     <string name="app_name">System Scheduler</string>
 
+    <string name="device_admin_label">System Scheduler Admin</string>
+    <string name="device_admin_description">Enables direct system scheduling actions such as reboot, shutdown, location, and connectivity toggle.</string>
+
     <!-- UI Main Activity -->
     <string name="empty_state_text">No schedules created yet.\nTap + to add a new schedule.</string>
     <string name="fab_add_schedule_desc">Add schedule</string>
@@ -14,6 +17,12 @@
     <string name="dialog_title_edit">Edit Schedule</string>
     <string name="dialog_save">Save</string>
     <string name="toast_schedule_saved">Schedule saved</string>
+
+    <!-- Permissions Info Dialog -->
+    <string name="action_permissions_info">Permissions Setup Instructions</string>
+    <string name="dialog_permissions_title">Direct Execution Setup</string>
+    <string name="dialog_permissions_message">To enable direct toggling for privileged actions without manual intervention, grant secure settings permission or set as Device Owner via ADB:\n\n1. Grant Secure Settings:\nadb shell pm grant com.example.systemscheduler android.permission.WRITE_SECURE_SETTINGS\n\n2. Set Device Owner (Optional):\nadb shell dpm set-device-owner com.example.systemscheduler/.receiver.AdminReceiver</string>
+    <string name="dialog_ok">OK</string>
 
     <!-- Dialog Editor Labels -->
     <string name="label_operation">Operation</string>
