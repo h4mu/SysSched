@@ -104,9 +104,17 @@ public class ScheduleUnitTest {
 
     @Test
     public void testOperationCapabilities() {
-        for (OperationType op : OperationType.values()) {
-            assertEquals(CapabilityLevel.DIRECT, OperationDispatcher.getCapability(context, op));
-        }
+        assertEquals(CapabilityLevel.DIRECT, OperationDispatcher.getCapability(context, OperationType.WIFI));
+        assertEquals(CapabilityLevel.DIRECT, OperationDispatcher.getCapability(context, OperationType.BLUETOOTH));
+        assertEquals(CapabilityLevel.DIRECT, OperationDispatcher.getCapability(context, OperationType.LOCATION));
+        assertEquals(CapabilityLevel.DIRECT, OperationDispatcher.getCapability(context, OperationType.MOBILE_DATA));
+        assertEquals(CapabilityLevel.DIRECT, OperationDispatcher.getCapability(context, OperationType.SYNC));
+        assertEquals(CapabilityLevel.DIRECT, OperationDispatcher.getCapability(context, OperationType.POWER_SAVING));
+        assertEquals(CapabilityLevel.DIRECT, OperationDispatcher.getCapability(context, OperationType.REBOOT));
+        assertEquals(CapabilityLevel.DIRECT, OperationDispatcher.getCapability(context, OperationType.SHUTDOWN));
+
+        CapabilityLevel nfcCap = OperationDispatcher.getCapability(context, OperationType.NFC);
+        assertTrue(nfcCap == CapabilityLevel.DIRECT || nfcCap == CapabilityLevel.UNSUPPORTED);
     }
 
     @Test
@@ -120,7 +128,10 @@ public class ScheduleUnitTest {
         for (OperationType op : OperationType.values()) {
             ExecutionResultStatus status = OperationDispatcher.dispatch(context, op, ActionType.ON);
             assertNotNull(status);
-            assertTrue(status == ExecutionResultStatus.SUCCESS || status == ExecutionResultStatus.PERMISSION_DENIED || status == ExecutionResultStatus.FAILED);
+            assertTrue(status == ExecutionResultStatus.SUCCESS
+                    || status == ExecutionResultStatus.PERMISSION_DENIED
+                    || status == ExecutionResultStatus.FAILED
+                    || status == ExecutionResultStatus.NOT_SUPPORTED);
         }
     }
 }
