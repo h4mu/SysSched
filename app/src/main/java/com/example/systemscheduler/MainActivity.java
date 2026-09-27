@@ -52,7 +52,17 @@ public class MainActivity extends AppCompatActivity implements ScheduleAdapter.O
 
         fabAdd.setOnClickListener(v -> showScheduleEditorDialog(null));
 
+        findViewById(R.id.btn_permissions_info).setOnClickListener(v -> showPermissionsInfoDialog());
+
         loadSchedules();
+    }
+
+    private void showPermissionsInfoDialog() {
+        new AlertDialog.Builder(this)
+                .setTitle(R.string.dialog_permissions_title)
+                .setMessage(R.string.dialog_permissions_message)
+                .setPositiveButton(R.string.dialog_ok, null)
+                .show();
     }
 
     private void loadSchedules() {

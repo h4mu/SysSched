@@ -16,7 +16,20 @@
             android:layout_height="?attr/actionBarSize"
             android:title="@string/app_name"
             app:titleTextColor="?attr/colorOnPrimary"
-            android:background="?attr/colorPrimary" />
+            android:background="?attr/colorPrimary">
+
+            <ImageButton
+                android:id="@+id/btn_permissions_info"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="end"
+                android:padding="12dp"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:contentDescription="@string/action_permissions_info"
+                android:src="@android:drawable/ic_dialog_info"
+                app:tint="?attr/colorOnPrimary" />
+
+        </com.google.android.material.appbar.MaterialToolbar>
 
     </com.google.android.material.appbar.AppBarLayout>
 

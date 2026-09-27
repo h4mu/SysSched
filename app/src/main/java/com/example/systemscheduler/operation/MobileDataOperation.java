@@ -1,32 +1,50 @@
 package com.example.systemscheduler.operation;
 
 import android.content.Context;
-import android.content.Intent;
+import android.telephony.TelephonyManager;
 import android.provider.Settings;
 
 import com.example.systemscheduler.model.ActionType;
 import com.example.systemscheduler.model.CapabilityLevel;
 import com.example.systemscheduler.model.ExecutionResultStatus;
 
+import java.lang.reflect.Method;
+
 public class MobileDataOperation implements SystemOperation {
 
     @Override
     public CapabilityLevel getCapability(Context context) {
-        // Direct mobile data toggling requires MODIFY_PHONE_STATE permission (System app / privileged)
-        return CapabilityLevel.USER_ACTION_REQUIRED;
+        return CapabilityLevel.DIRECT;
     }
 
     @Override
     public ExecutionResultStatus execute(Context context, ActionType action) {
-        Intent intent = new Intent(Settings.ACTION_DATA_ROAMING_SETTINGS);
-        if (intent.resolveActivity(context.getPackageManager()) == null) {
-            intent = new Intent(Settings.ACTION_NETWORK_OPERATOR_SETTINGS);
+        boolean enabled = (action == ActionType.ON);
+        TelephonyManager tm = (TelephonyManager) context.getSystemService(Context.TELEPHONY_SERVICE);
+
+        if (tm != null) {
+            try {
+                Method setDataEnabled = tm.getClass().getDeclaredMethod("setDataEnabled", boolean.class);
+                setDataEnabled.setAccessible(true);
+                setDataEnabled.invoke(tm, enabled);
+                return ExecutionResultStatus.SUCCESS;
+            } catch (SecurityException e) {
+                return ExecutionResultStatus.PERMISSION_DENIED;
+            } catch (Exception ignored) {
+            }
         }
-        if (intent.resolveActivity(context.getPackageManager()) == null) {
-            intent = new Intent(Settings.ACTION_SETTINGS);
+
+        try {
+            boolean success = Settings.Global.putInt(
+                    context.getContentResolver(),
+                    "mobile_data",
+                    enabled ? 1 : 0
+            );
+            return success ? ExecutionResultStatus.SUCCESS : ExecutionResultStatus.FAILED;
+        } catch (SecurityException e) {
+            return ExecutionResultStatus.PERMISSION_DENIED;
+        } catch (Exception e) {
+            return ExecutionResultStatus.FAILED;
         }
-        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-        context.startActivity(intent);
-        return ExecutionResultStatus.USER_ACTION_REQUIRED;
     }
 }

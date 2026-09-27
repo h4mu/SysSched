@@ -1,7 +1,6 @@
 package com.example.systemscheduler.operation;
 
 import android.content.Context;
-import android.content.Intent;
 import android.provider.Settings;
 
 import com.example.systemscheduler.model.ActionType;
@@ -12,15 +11,25 @@ public class LocationOperation implements SystemOperation {
 
     @Override
     public CapabilityLevel getCapability(Context context) {
-        // Modern Android strictly restricts third-party apps from changing global Location setting silently
-        return CapabilityLevel.USER_ACTION_REQUIRED;
+        return CapabilityLevel.DIRECT;
     }
 
     @Override
     public ExecutionResultStatus execute(Context context, ActionType action) {
-        Intent intent = new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
-        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-        context.startActivity(intent);
-        return ExecutionResultStatus.USER_ACTION_REQUIRED;
+        int mode = (action == ActionType.ON)
+                ? Settings.Secure.LOCATION_MODE_HIGH_ACCURACY
+                : Settings.Secure.LOCATION_MODE_OFF;
+        try {
+            boolean success = Settings.Secure.putInt(
+                    context.getContentResolver(),
+                    Settings.Secure.LOCATION_MODE,
+                    mode
+            );
+            return success ? ExecutionResultStatus.SUCCESS : ExecutionResultStatus.FAILED;
+        } catch (SecurityException e) {
+            return ExecutionResultStatus.PERMISSION_DENIED;
+        } catch (Exception e) {
+            return ExecutionResultStatus.FAILED;
+        }
     }
 }

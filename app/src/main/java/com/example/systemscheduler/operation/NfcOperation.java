@@ -1,13 +1,14 @@
 package com.example.systemscheduler.operation;
 
 import android.content.Context;
-import android.content.Intent;
 import android.nfc.NfcAdapter;
 import android.provider.Settings;
 
 import com.example.systemscheduler.model.ActionType;
 import com.example.systemscheduler.model.CapabilityLevel;
 import com.example.systemscheduler.model.ExecutionResultStatus;
+
+import java.lang.reflect.Method;
 
 public class NfcOperation implements SystemOperation {
 
@@ -17,8 +18,7 @@ public class NfcOperation implements SystemOperation {
         if (adapter == null) {
             return CapabilityLevel.UNSUPPORTED;
         }
-        // Direct toggling of NFC is restricted on modern Android for standard apps
-        return CapabilityLevel.USER_ACTION_REQUIRED;
+        return CapabilityLevel.DIRECT;
     }
 
     @Override
@@ -28,12 +28,33 @@ public class NfcOperation implements SystemOperation {
             return ExecutionResultStatus.NOT_SUPPORTED;
         }
 
-        Intent intent = new Intent(Settings.ACTION_NFC_SETTINGS);
-        if (intent.resolveActivity(context.getPackageManager()) == null) {
-            intent = new Intent(Settings.ACTION_WIRELESS_SETTINGS);
+        boolean enable = (action == ActionType.ON);
+
+        try {
+            Method method = enable
+                    ? adapter.getClass().getDeclaredMethod("enable")
+                    : adapter.getClass().getDeclaredMethod("disable");
+            method.setAccessible(true);
+            boolean success = (Boolean) method.invoke(adapter);
+            if (success) {
+                return ExecutionResultStatus.SUCCESS;
+            }
+        } catch (SecurityException e) {
+            return ExecutionResultStatus.PERMISSION_DENIED;
+        } catch (Exception ignored) {
         }
-        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-        context.startActivity(intent);
-        return ExecutionResultStatus.USER_ACTION_REQUIRED;
+
+        try {
+            boolean success = Settings.Global.putInt(
+                    context.getContentResolver(),
+                    "nfc_on",
+                    enable ? 1 : 0
+            );
+            return success ? ExecutionResultStatus.SUCCESS : ExecutionResultStatus.FAILED;
+        } catch (SecurityException e) {
+            return ExecutionResultStatus.PERMISSION_DENIED;
+        } catch (Exception e) {
+            return ExecutionResultStatus.FAILED;
+        }
     }
 }

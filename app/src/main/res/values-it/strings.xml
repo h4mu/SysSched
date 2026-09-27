@@ -2,6 +2,9 @@
 <resources>
     <string name="app_name">Pianificatore di Sistema</string>
 
+    <string name="device_admin_label">System Scheduler Amministratore</string>
+    <string name="device_admin_description">Consente azioni dirette programmate di sistema come riavvio, spegnimento, posizione e connettività.</string>
+
     <!-- UI Main Activity -->
     <string name="empty_state_text">Nessuna pianificazione creata.\nTocca + per aggiungere una nuova pianificazione.</string>
     <string name="fab_add_schedule_desc">Aggiungi pianificazione</string>
@@ -14,6 +17,11 @@
     <string name="dialog_title_edit">Modifica pianificazione</string>
     <string name="dialog_save">Salva</string>
     <string name="toast_schedule_saved">Pianificazione salvata</string>
+
+    <string name="action_permissions_info">Istruzioni Autorizzazioni</string>
+    <string name="dialog_permissions_title">Configurazione Esecuzione Diretta</string>
+    <string name="dialog_permissions_message">Per abilitare l\'attivazione diretta senza intervento manuale, concedere l\'autorizzazione Impostazioni di Sicurezza o impostare come Owner via ADB:\n\n1. Concedi Autorizzazione:\nadb shell pm grant com.example.systemscheduler android.permission.WRITE_SECURE_SETTINGS\n\n2. Imposta Device Owner (Opzionale):\nadb shell dpm set-device-owner com.example.systemscheduler/.receiver.AdminReceiver</string>
+    <string name="dialog_ok">OK</string>
 
     <!-- Dialog Editor Labels -->
     <string name="label_operation">Operazione</string>

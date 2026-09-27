@@ -1,7 +1,6 @@
 package com.example.systemscheduler.operation;
 
 import android.content.Context;
-import android.content.Intent;
 import android.provider.Settings;
 
 import com.example.systemscheduler.model.ActionType;
@@ -12,18 +11,23 @@ public class PowerSavingOperation implements SystemOperation {
 
     @Override
     public CapabilityLevel getCapability(Context context) {
-        // Direct modification of Power Saving mode requires WRITE_SECURE_SETTINGS or privileged app permissions
-        return CapabilityLevel.USER_ACTION_REQUIRED;
+        return CapabilityLevel.DIRECT;
     }
 
     @Override
     public ExecutionResultStatus execute(Context context, ActionType action) {
-        Intent intent = new Intent(Settings.ACTION_BATTERY_SAVER_SETTINGS);
-        if (intent.resolveActivity(context.getPackageManager()) == null) {
-            intent = new Intent(Settings.ACTION_SETTINGS);
+        boolean enable = (action == ActionType.ON);
+        try {
+            boolean success = Settings.Global.putInt(
+                    context.getContentResolver(),
+                    "low_power",
+                    enable ? 1 : 0
+            );
+            return success ? ExecutionResultStatus.SUCCESS : ExecutionResultStatus.FAILED;
+        } catch (SecurityException e) {
+            return ExecutionResultStatus.PERMISSION_DENIED;
+        } catch (Exception e) {
+            return ExecutionResultStatus.FAILED;
         }
-        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-        context.startActivity(intent);
-        return ExecutionResultStatus.USER_ACTION_REQUIRED;
     }
 }
